@@ -466,8 +466,10 @@ func shapeWord(input string) string {
 	//Restore Tashkeel
 	for i := range inputTashkeelRunes {
 		if _, ok := arabicAlphabetShapes[inputTashkeelRunes[i]]; ok {
-			shapedInputTashkeel.WriteRune([]rune(shapedInput.String())[letterIndex])
-			letterIndex++
+			if letterIndex < len([]rune(shapedInput.String())) {
+				shapedInputTashkeel.WriteRune([]rune(shapedInput.String())[letterIndex])
+				letterIndex++
+			}
 		} else {
 			shapedInputTashkeel.WriteRune(inputTashkeelRunes[i])
 		}
